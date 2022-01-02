@@ -232,12 +232,88 @@ def probability():
     def normalMath():
         sns.histplot(df.math, kde=TRUE)
         plt.savefig('fig1.png')
-        # show on screen here
+        showPlot()
         plt.clf()
+        getEntry()
+
+    def normalReading():
+        sns.histplot(df.reading, kde=TRUE)
+        plt.savefig('fig1.png')
+        showPlot()
+        plt.clf()
+        getEntry()
+
+    def normalWriting():
+        sns.histplot(df.writing, kde=TRUE)
+        plt.savefig('fig1.png')
+        showPlot()
+        plt.clf()
+        getEntry()
+
+    def mathProb(score):
+        mean = df.math.mean()
+        std = df.math.std()
+        x = score
+        zScore = (x-mean)/std
+        prob = norm.cdf(zScore)
+        strAns = "The probability of getting upto " + \
+            str(score) + " marks in Maths is " + str(prob*100) + "%"
+        strAns1 = "The probability of getting at-least " + \
+            str(score) + " marks in Maths is " + str((1-prob)*100) + "%"
+        description.config(text=strAns)
+        description1.config(text=strAns1)
+
+    def readProb(score):
+        mean = df.reading.mean()
+        std = df.reading.std()
+        x = score
+        zScore = (x-mean)/std
+        prob = norm.cdf(zScore)
+        strAns = "The probability of getting upto " + \
+            str(score) + " marks in Reading is " + str(prob*100) + "%"
+        strAns1 = "The probability of getting at-least " + \
+            str(score) + " marks in Reading is " + str((1-prob)*100) + "%"
+        description.config(text=strAns)
+        description1.config(text=strAns1)
+
+    def writeProb(score):
+        mean = df.writing.mean()
+        std = df.writing.std()
+        x = score
+        zScore = (x-mean)/std
+        prob = norm.cdf(zScore)
+        strAns = "The probability of getting upto " + \
+            str(score) + " marks in Writing is " + str(prob*100) + "%"
+        strAns1 = "The probability of getting at-least " + \
+            str(score) + " marks in Writing is " + str((1-prob)*100) + "%"
+        description.config(text=strAns)
+        description1.config(text=strAns1)
+
+    def getEntry():
+        enterNum = Entry(probWindow, text="Enter Marks", textvariable=value)
+        enterNum.place(x=420, y=20)
+        subBtn = Button(probWindow, text="Submit",
+                        command=submitMarks)
+        subBtn.place(x=495, y=39)
+
+    def submitMarks():
+        print(value.get())
+        print(checkVal.get())
+        marks = float(value.get())
+        if marks > 0 and marks < 100:
+            if checkVal.get() == 1:
+                mathProb(marks)
+            elif checkVal.get() == 2:
+                readProb(marks)
+            elif checkVal.get() == 3:
+                writeProb(marks)
+        else:
+            description.config(text="Give correct input please")
 
     # Window creation.......................................................................
     root.withdraw()
     probWindow = Toplevel()
+    value = StringVar()
 
     def showPlot():
         figure = Image.open("fig1.png")
@@ -253,14 +329,38 @@ def probability():
     bgS = Label(probWindow, image=statPhoto)
     bgS.image = statPhoto
     bgS.place(x=0, y=0)
+    # Exit Menu
+    menu = Menu(probWindow)
+    probWindow.config(menu=menu)
+    chartMenu = Menu(menu)
+    menu.add_cascade(label='Exit', menu=chartMenu)
+    chartMenu.add_command(label='Exit', command=exitProb)
+    description = Label(probWindow, text="Probability will show here", font=(
+        "Times New Roman", 10, 'bold'), anchor="center")
+    description1 = Label(probWindow, text="Probability will show here", font=(
+        "Times New Roman", 10, 'bold'), anchor="center")
+
+    # Buttons
+    checkVal = IntVar()
+    mathBtn = Radiobutton(probWindow, text="Maths Score", variable=checkVal,
+                          value=1, command=normalMath).place(x=10, y=20)
+    readBtn = Radiobutton(probWindow, text="Reading Score", variable=checkVal,
+                          value=2, command=normalReading).place(x=150, y=20)
+    writeBtn = Radiobutton(probWindow, text="Writing Score", variable=checkVal,
+                           value=3, command=normalWriting).place(x=300, y=20)
+
+    description.place(x=10, y=50)
+    description1.place(x=10, y=75)
 
 
 # Logic on objects......................................................................................................
 welcome = Label(
     root, text="Welcome to our Statistics and probability Analysis", font=("Times New Roman", 20), anchor="center")
+
 btn1 = Button(root, text="Statistics", width=20,  height=3,
               back='#f86363', command=statistics)
-btn2 = Button(root, text="Probability", width=20,  height=3, back='#f86363')
+btn2 = Button(root, text="Probability", width=20,  height=3,
+              back='#f86363', command=probability)
 btn3 = Button(root, text="Predicitons", width=20,  height=3, back='#f86363')
 
 
