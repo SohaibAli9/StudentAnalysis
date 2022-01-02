@@ -152,21 +152,21 @@ def isNormal(arr):
 #           "% probability of getting more than ", x, " marks")
 
 
-def probMenu(maths, reading, writing):
-    print("PRESS")
-    print("1. for Maths Score Probability")
-    print("2. for Writing Score Probability")
-    print("3. for Reading Score Probability")
-    choice = int(input("Enter: "))
+# def probMenu(maths, reading, writing):
+#     print("PRESS")
+#     print("1. for Maths Score Probability")
+#     print("2. for Writing Score Probability")
+#     print("3. for Reading Score Probability")
+#     choice = int(input("Enter: "))
 
-    if choice == 1:
-        mathProb(maths)
-    elif choice == 2:
-        writeProb(reading)
-    elif choice == 3:
-        readProb(writing)
-    else:
-        print("Invalid input")
+#     if choice == 1:
+#         mathProb(maths)
+#     elif choice == 2:
+#         writeProb(reading)
+#     elif choice == 3:
+#         readProb(writing)
+#     else:
+#         print("Invalid input")
 
 
 # Code -----------------------------------------------------------------------------------------------------
