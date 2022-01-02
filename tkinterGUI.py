@@ -1,17 +1,26 @@
 from tkinter import *
 
 
-def printName(event):
-    print("My name is Sohaib")
+def leftClick(event):
+    print("Left Click")
+
+
+def rightClick(event):
+    print("Right Click")
 
 
 root = Tk()
 
-btn1 = Button(root, text="print Name")
-btn1.bind("<Button-1>", printName)
-btn1.pack() 
+frame = Frame(root, height=600, width=800)
+frame.bind('<Button-1>', leftClick)
+frame.bind('<Button-3>', rightClick)
+frame.pack()
 
 root.mainloop()
+
+# btn1 = Button(root, text="print Name")
+# btn1.bind("<Button-1>", printName)
+# btn1.pack()
 
 # lbl1 = Label(root, text="Name")
 # lbl2 = Label(root, text="Password")

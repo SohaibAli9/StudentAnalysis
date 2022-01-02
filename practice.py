@@ -8,6 +8,7 @@ import seaborn as sns
 import scipy
 from scipy.stats import norm
 from matplotlib import pyplot as plt
+from sklearn import linear_model
 
 pd.set_option("max_columns", None)
 
@@ -177,6 +178,26 @@ df['Percentage'] = (df.math +
 df["grade"] = df.apply(lambda x: Grade(x["Percentage"]), axis=1)
 plt.tight_layout()
 
+
+reg = linear_model.LinearRegression()
+reg.fit(df[['math', 'writing']].values, df.reading)
+print(reg.coef_)
+print(reg.intercept_)
+print(reg.predict([[67, 89]])[0])
+
+
+# plt.xlabel('Maths Score', fontsize=10)
+# plt.ylabel('Reading Score', fontsize=10)
+# plt.scatter(df.math, df.reading, marker=".")
+# plt.plot(df.math, reg.predict(df[["math"]]), color="red")
+# plt.show()
+
+
+# print(reg.predict([[90]]))
+
+
+# print(df.corr())
+
 # genderScore()
 # correlationScores()
 # genderPie()
@@ -226,3 +247,5 @@ mathNorm = np.array(df.math)
 
 
 # predicting scores with y = mxab because correaltion.
+
+# DATA PREPROCESS
