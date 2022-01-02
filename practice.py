@@ -15,101 +15,101 @@ pd.set_option("max_columns", None)
 # Functions ------------------------------------------------------------------------------------------------
 
 
-def Grade(Percentage):
-    if (Percentage >= 95):
-        return 'O'
-    if (Percentage >= 81):
-        return 'A'
-    if (Percentage >= 71):
-        return 'B'
-    if (Percentage >= 61):
-        return 'C'
-    if (Percentage >= 51):
-        return 'D'
-    if (Percentage >= 41):
-        return 'E'
-    else:
-        return 'F'
+# def Grade(Percentage):
+#     if (Percentage >= 95):
+#         return 'O'
+#     if (Percentage >= 81):
+#         return 'A'
+#     if (Percentage >= 71):
+#         return 'B'
+#     if (Percentage >= 61):
+#         return 'C'
+#     if (Percentage >= 51):
+#         return 'D'
+#     if (Percentage >= 41):
+#         return 'E'
+#     else:
+#         return 'F'
 
 
-def genderPie():
-    # Gender Ration Pie plot ------------------------
-    sns.set(style='whitegrid')
-    plt.figure(figsize=(14, 7))
-    labels = ['Female', 'Male']
-    plt.pie(df['gender'].value_counts(), labels=labels, explode=[0.1, 0.1],
-            autopct='%1.2f%%', colors=['#E37383', '#FFC0CB'], startangle=90)
-    plt.title('Gender')
-    plt.axis('equal')
-    plt.show()
+# def genderPie():
+#     # Gender Ration Pie plot ------------------------
+#     sns.set(style='whitegrid')
+#     plt.figure(figsize=(14, 7))
+#     labels = ['Female', 'Male']
+#     plt.pie(df['gender'].value_counts(), labels=labels, explode=[0.1, 0.1],
+#             autopct='%1.2f%%', colors=['#E37383', '#FFC0CB'], startangle=90)
+#     plt.title('Gender')
+#     plt.axis('equal')
+#     plt.show()
 
 
-def genderScore():
-    # Gender v Score plot ----------------------------
-    plt.figure(figsize=(10, 5))
-    sns.set_context("talk", font_scale=1)
-    sns.set_palette("pastel")
-    ax = sns.countplot(y="grade", hue="gender", data=df, order=[
-        "O", "A", "B", "C", "D", "E", "F"])
-    ax.legend(loc='upper right', frameon=True)
-    plt.title('Gender vs Grades', fontsize=18, fontweight='bold')
-    ax.set(xlabel='COUNT', ylabel='GRADE')
-    plt.show()
+# def genderScore():
+#     # Gender v Score plot ----------------------------
+#     plt.figure(figsize=(10, 5))
+#     sns.set_context("talk", font_scale=1)
+#     sns.set_palette("pastel")
+#     ax = sns.countplot(y="grade", hue="gender", data=df, order=[
+#         "O", "A", "B", "C", "D", "E", "F"])
+#     ax.legend(loc='upper right', frameon=True)
+#     plt.title('Gender vs Grades', fontsize=18, fontweight='bold')
+#     ax.set(xlabel='COUNT', ylabel='GRADE')
+#     plt.show()
 
 
-def correlationScores():
-    # correlation analysis scores and percantages----------------------
-    plt.figure(figsize=(8, 8))
-    plt.title('Correlation Analysis', color='Red', fontsize=20, pad=40)
+# def correlationScores():
+#     # correlation analysis scores and percantages----------------------
+#     plt.figure(figsize=(8, 8))
+#     plt.title('Correlation Analysis', color='Red', fontsize=20, pad=40)
 
-    corr = df.corr()
-    mask = np.triu(np.ones_like(corr, dtype=bool))
-    sns.heatmap(df.corr(), mask=mask, annot=True, linewidths=.5)
-    plt.xticks(rotation=60)
-    plt.yticks(rotation=60)
-    plt.show()
-
-
-def prepPlot():
-    # tet preparation ---------------------------------
-    sns.set_context("talk", font_scale=0.5)
-    sns.set_palette("Pastel2")
-    sns.kdeplot(data=df, x="Percentage",
-                hue="test preparation course", multiple="stack")
-    plt.title('Percentage vs Test Preparation', fontsize=15, fontweight='bold')
-
-    plt.show()
+#     corr = df.corr()
+#     mask = np.triu(np.ones_like(corr, dtype=bool))
+#     sns.heatmap(df.corr(), mask=mask, annot=True, linewidths=.5)
+#     plt.xticks(rotation=60)
+#     plt.yticks(rotation=60)
+#     plt.show()
 
 
-def lunchPlot():
-    # standard vs freee lunch
-    sns.set_context("notebook", font_scale=0.8)
-    sns.kdeplot(data=df, x="Percentage", hue="lunch",
-                multiple="layer", fill=True)
-    plt.xlabel('Percentage')
-    plt.title('Percentage vs Lunch Kde Plot', fontsize=15, fontweight='bold')
+# def prepPlot():
+#     # tet preparation ---------------------------------
+#     sns.set_context("talk", font_scale=0.5)
+#     sns.set_palette("Pastel2")
+#     sns.kdeplot(data=df, x="Percentage",
+#                 hue="test preparation course", multiple="stack")
+#     plt.title('Percentage vs Test Preparation', fontsize=15, fontweight='bold')
 
-    plt.show()
-
-
-def scoreLunchPlot():
-    # writing score lunch vs percentage
-    sns.set_palette("tab10")
-    g = sns.JointGrid(data=df, x="Percentage", y="writing score", hue="lunch")
-    g.plot(sns.scatterplot, sns.histplot)
-    plt.title('Percentage and Writing score vs Lunch',
-              fontsize=15, fontweight='bold', y=1.3, loc="right")
-    plt.show()
+#     plt.show()
 
 
-def racePercentage():
-    # race and percentage box plot analysis
-    sns.set_palette("vlag")
-    sns.catplot(x="race/ethnicity", y="Percentage", kind="boxen",
-                data=df.sort_values("race/ethnicity"))
-    plt.title('Race/ethnicity vs Percentage', fontsize=15, fontweight='bold')
+# def lunchPlot():
+#     # standard vs freee lunch
+#     sns.set_context("notebook", font_scale=0.8)
+#     sns.kdeplot(data=df, x="Percentage", hue="lunch",
+#                 multiple="layer", fill=True)
+#     plt.xlabel('Percentage')
+#     plt.title('Percentage vs Lunch Kde Plot', fontsize=15, fontweight='bold')
 
-    plt.show()
+#     plt.show()
+
+
+# def scoreLunchPlot():
+#     # writing score lunch vs percentage
+#     sns.set_palette("tab10")
+#     g = sns.JointGrid(data=df, x="Percentage", y="writing score", hue="lunch")
+#     g.plot(sns.scatterplot, sns.histplot)
+#     plt.title('Percentage and Writing score vs Lunch',
+#               fontsize=15, fontweight='bold', y=1.3, loc="right")
+#     plt.show()
+
+
+# def racePercentage():
+#     # race and percentage box plot analysis
+#     sns.set_palette("vlag")
+#     sns.catplot(x="race/ethnicity", y="Percentage", kind="boxen",
+#                 data=df.sort_values("race/ethnicity"))
+#     plt.title('Race/ethnicity vs Percentage', fontsize=15, fontweight='bold')
+
+#     plt.show()
 
 
 def isNormal(arr):
@@ -119,37 +119,37 @@ def isNormal(arr):
     return FALSE
 
 
-def mathProb(score):
-    mean = score.mean()
-    std = score.std()
-    x = int(input("Enter Marks: "))
-    zScore = (x-mean)/std
-    prob = norm.cdf(zScore)
-    print("There is ", prob*100, "% probability of getting less than ", x, " marks")
-    print("There is ", (1 - prob)*100,
-          "% probability of getting more than ", x, " marks")
+# def mathProb(score):
+#     mean = score.mean()
+#     std = score.std()
+#     x = int(input("Enter Marks: "))
+#     zScore = (x-mean)/std
+#     prob = norm.cdf(zScore)
+#     print("There is ", prob*100, "% probability of getting less than ", x, " marks")
+#     print("There is ", (1 - prob)*100,
+#           "% probability of getting more than ", x, " marks")
 
 
-def readProb(score):
-    mean = score.mean()
-    std = score.std()
-    x = int(input("Enter Marks: "))
-    zScore = (x-mean)/std
-    prob = norm.cdf(zScore)
-    print("There is ", prob*100, "% probability of getting less than ", x, " marks")
-    print("There is ", (1 - prob)*100,
-          "% probability of getting more than ", x, " marks")
+# def readProb(score):
+#     mean = score.mean()
+#     std = score.std()
+#     x = int(input("Enter Marks: "))
+#     zScore = (x-mean)/std
+#     prob = norm.cdf(zScore)
+#     print("There is ", prob*100, "% probability of getting less than ", x, " marks")
+#     print("There is ", (1 - prob)*100,
+#           "% probability of getting more than ", x, " marks")
 
 
-def writeProb(score):
-    mean = score.mean()
-    std = score.std()
-    x = int(input("Enter Marks: "))
-    zScore = (x-mean)/std
-    prob = norm.cdf(zScore)
-    print("There is ", prob*100, "% probability of getting less than ", x, " marks")
-    print("There is ", (1 - prob)*100,
-          "% probability of getting more than ", x, " marks")
+# def writeProb(score):
+#     mean = score.mean()
+#     std = score.std()
+#     x = int(input("Enter Marks: "))
+#     zScore = (x-mean)/std
+#     prob = norm.cdf(zScore)
+#     print("There is ", prob*100, "% probability of getting less than ", x, " marks")
+#     print("There is ", (1 - prob)*100,
+#           "% probability of getting more than ", x, " marks")
 
 
 def probMenu(maths, reading, writing):
