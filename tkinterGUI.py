@@ -1,22 +1,23 @@
 from tkinter import *
 
 
-def leftClick(event):
-    print("Left Click")
-
-
-def rightClick(event):
-    print("Right Click")
-
-
 root = Tk()
 
-frame = Frame(root, height=600, width=800)
-frame.bind('<Button-1>', leftClick)
-frame.bind('<Button-3>', rightClick)
-frame.pack()
 
 root.mainloop()
+
+
+# def leftClick(event):
+#     print("Left Click")
+
+
+# def rightClick(event):
+#     print("Right Click")
+
+# frame = Frame(root, height=600, width=800)
+# frame.bind('<Button-1>', leftClick)
+# frame.bind('<Button-3>', rightClick)
+# frame.pack()
 
 # btn1 = Button(root, text="print Name")
 # btn1.bind("<Button-1>", printName)
@@ -49,3 +50,17 @@ root.mainloop()
 # btn2.pack(side=LEFT)
 # btn3.pack(side=LEFT)
 # btn4.pack(fill=Y)
+
+
+# def newWindow():
+
+#     root.destroy()
+#     newOne = Tk()
+#     newOne.title("New window")
+#     newOne.geometry("200x200")
+#     Label(newOne, text="This is a new window").pack()
+
+
+# plt.tight_layout()
+# fig = plt.scatter([1, 2, 3, 4], [10, 20, 30, 40])
+# plt.savefig('fig1.png')
