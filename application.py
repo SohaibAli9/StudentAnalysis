@@ -42,6 +42,29 @@ def Grade(Percentage):
 df = pd.read_csv('./StudentsPerformance.csv')
 passmark = 40
 
+# Data Cleaning
+count = 0
+for i in df.math:
+    if i < 0 or i > 100:
+        df.math[count] = np.nan
+    count = count + 1
+mean = df.math.mean()
+df.math = df["math"].fillna(mean)
+count = 0
+for i in df.writing:
+    if i < 0 or i > 100:
+        df.writing[count] = np.nan
+    count = count + 1
+mean = df.writing.mean()
+df.writing = df["writing"].fillna(mean)
+count = 0
+for i in df.reading:
+    if i < 0 or i > 100:
+        df.reading[count] = np.nan
+    count = count + 1
+mean = df.reading.mean()
+df.reading = df["reading"].fillna(mean)
+
 df['Percentage'] = (df.math +
                     df.reading+df.writing)/3
 df["grade"] = df.apply(lambda x: Grade(x["Percentage"]), axis=1)
